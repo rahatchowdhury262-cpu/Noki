@@ -1,27 +1,932 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Noki — Online Marketplace</title><link rel="stylesheet" href="style.css"></head><body data-page="home">
-<div class="top"><div class="wrap"><span>Welcome to Noki Marketplace</span><span>Demo Business Website</span></div></div>
-<header class="header"><div class="head">
-<a href="index.html"><img class="logo" src="noki-logo.png" alt="Noki"></a>
-<form class="search" data-search-form><input id="globalSearch" placeholder="Search products, categories or sellers..."><button>🔎</button></form>
-<button class="head-btn" data-theme>🌙</button>
-<a class="head-btn" href="seller.html">🏪 Sell</a>
-<a class="head-btn" href="cart.html">🛒 <span data-cart-count>0</span></a>
-</div>
-<nav class="nav">
-<button data-open-menu>☰ Categories</button><a href="index.html">🏠 Home</a><a href="products.html">🛍️ Products</a><a href="products.html?cat=Electronics">🔥 Flash Sale</a><a href="seller.html">🏪 Sell on Noki</a><a href="products.html?cat=Fashion">👕 Fashion</a><a href="cart.html">🛒 Cart</a>
-</nav></header>
-<div class="menu" id="menu"><aside class="drawer"><button class="close" data-close-menu>×</button><h2>☰ Categories</h2>
-<div class="cat-menu">📱 Mobiles & Tablets<div class="sub"><a href="products.html?cat=Mobiles%20%26%20Tablets">Smartphones</a><br><a href="products.html?cat=Mobiles%20%26%20Tablets">Tablets</a></div></div>
-<div class="cat-menu">💻 Computers & Laptops<div class="sub"><a href="products.html?cat=Computers%20%26%20Laptops">Laptops</a><br><a href="products.html?cat=Computers%20%26%20Laptops">Accessories</a></div></div>
-<div class="cat-menu">🎧 Electronics<div class="sub"><a href="products.html?cat=Electronics">Headphones</a><br><a href="products.html?cat=Electronics">Speakers</a><br><a href="products.html?cat=Electronics">Cameras</a></div></div>
-<div class="cat-menu">👕 Fashion<div class="sub"><a href="products.html?cat=Fashion">T-Shirts</a><br><a href="products.html?cat=Fashion">Clothing</a></div></div>
-<div class="cat-menu">👟 Shoes</div><div class="cat-menu">🎒 Bags</div><div class="cat-menu">⌚ Watches</div><div class="cat-menu">🏠 Home & Living</div><div class="cat-menu">🎮 Gaming</div><div class="cat-menu">📚 Books</div><div class="cat-menu">💄 Beauty</div><div class="cat-menu">🔧 Accessories</div>
-</aside></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<section class="hero"><div class="hero-box"><div><h1>Everything you need, all in Noki.</h1><p>Discover products, compare prices, save favourites and order from product details. Sellers can also publish demo products.</p><a class="cta" href="products.html">Shop Now →</a></div><div style="font-size:80px">🛍️</div></div></section>
-<section class="section"><div class="ad"><div><h2>Noki Special Offer 🎉</h2><p>Fresh deals, flash sales and new products every day.</p></div><a class="cta" href="products.html">View Deals</a></div></section>
-<section class="section"><div class="section-head"><h2>Categories</h2><a href="products.html">View all →</a></div><div class="category-row">
-<a class="cat" href="products.html?cat=Mobiles%20%26%20Tablets">📱 Mobiles</a><a class="cat" href="products.html?cat=Electronics">🎧 Electronics</a><a class="cat" href="products.html?cat=Fashion">👕 Fashion</a><a class="cat" href="products.html?cat=Shoes">👟 Shoes</a><a class="cat" href="products.html?cat=Bags">🎒 Bags</a><a class="cat" href="products.html?cat=Gaming">🎮 Gaming</a></div></section>
-<section class="section"><div class="section-head"><h2>🔥 Flash Sale</h2><a href="products.html">See all</a></div><div class="grid" id="flashGrid"></div></section>
-<section class="section"><div class="section-head"><h2>Popular Products</h2><a href="products.html">All Products →</a></div><div class="grid" id="productGrid"></div></section>
-<footer class="footer"><div class="footer-inner"><div><h2>Noki</h2><p>Shop smarter. Live better.</p></div><div><b>Quick Links</b><p><a href="products.html">Products</a><br><a href="seller.html">Sell on Noki</a><br><a href="cart.html">Cart</a></p></div><div><b>Demo Notice</b><p>This version uses browser storage. A real marketplace needs a secure backend/database.</p></div></div></footer><div class="toast" id="toast"></div><script src="script.js"></script></body></html>
+    <title>NOKI - Online Shopping</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        /* HEADER */
+        header {
+            background: #ff6600;
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .search-box {
+            flex: 1;
+            display: flex;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 13px 16px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .search-box button {
+            width: 55px;
+            border: none;
+            background: #fff;
+            color: #ff6600;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .header-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #ff6600, #ff8c00);
+            color: white;
+            min-height: 330px;
+            padding: 60px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            background: white;
+            color: #ff6600;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .shop-btn:hover {
+            background: #222;
+            color: white;
+        }
+
+        .hero-icon {
+            font-size: 130px;
+        }
+
+        /* MAIN */
+        main {
+            width: 90%;
+            max-width: 1250px;
+            margin: 35px auto;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 26px;
+        }
+
+        .section-title a {
+            color: #ff6600;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* CATEGORIES */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .category {
+            background: white;
+            padding: 25px 10px;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #222;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            color: #ff6600;
+        }
+
+        .category-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .category h3 {
+            font-size: 15px;
+        }
+
+        /* PRODUCTS */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-info h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #ff6600;
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .old-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .rating {
+            color: #ff9900;
+            margin-bottom: 12px;
+        }
+
+        .buy-btn {
+            width: 100%;
+            border: none;
+            background: #ff6600;
+            color: white;
+            padding: 11px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .buy-btn:hover {
+            background: #e65500;
+        }
+
+        /* FLASH SALE */
+        .flash-sale {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 40px 0;
+            border-top: 4px solid #ff6600;
+        }
+
+        .sale-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .sale-header h2 {
+            color: #ff6600;
+        }
+
+        .timer {
+            background: #222;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* BANNER */
+        .banner {
+            background: linear-gradient(90deg, #222, #444);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .banner h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .banner p {
+            margin-bottom: 20px;
+        }
+
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .feature {
+            background: white;
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .feature-icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #222;
+            color: white;
+            padding: 45px 7% 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 35px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 15px;
+            color: #ff6600;
+        }
+
+        .footer-col p {
+            color: #ccc;
+            line-height: 1.7;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin: 9px 0;
+        }
+
+        .footer-col a:hover {
+            color: #ff6600;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            color: #aaa;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+
+            header {
+                flex-wrap: wrap;
+            }
+
+            .search-box {
+                order: 3;
+                flex-basis: 100%;
+            }
+
+            .categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 12px 4%;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            .header-link {
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 45px 6%;
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .hero-icon {
+                display: none;
+            }
+
+            main {
+                width: 94%;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .product-image {
+                height: 150px;
+                font-size: 60px;
+            }
+
+            .product-info {
+                padding: 10px;
+            }
+
+            .product-info h3 {
+                font-size: 14px;
+            }
+
+            .price {
+                font-size: 17px;
+            }
+
+            .sale-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .features {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="logo">NOKI</div>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search products...">
+            <button>🔍</button>
+        </div>
+
+        <a href="#" class="header-link">Login</a>
+
+        <a href="#" class="header-link">🛒 Cart</a>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <h1>Welcome to NOKI</h1>
+
+            <p>
+                Discover amazing products at amazing prices.
+                Shop electronics, fashion, gaming products and more.
+            </p>
+
+            <a href="#products" class="shop-btn">
+                Shop Now
+            </a>
+
+        </div>
+
+        <div class="hero-icon">
+            🛍️
+        </div>
+
+    </section>
+
+
+    <main>
+
+        <!-- FEATURES -->
+        <section class="features">
+
+            <div class="feature">
+                <div class="feature-icon">🚚</div>
+                <h3>Fast Delivery</h3>
+                <p>Fast and reliable delivery.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure Payment</h3>
+                <p>Your payment is safe with us.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">⭐</div>
+                <h3>Quality Products</h3>
+                <p>We provide quality products.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">💬</div>
+                <h3>24/7 Support</h3>
+                <p>We are here to help you.</p>
+            </div>
+
+        </section>
+
+
+        <!-- CATEGORIES -->
+        <section>
+
+            <div class="section-title">
+                <h2>Categories</h2>
+                <a href="#">View All</a>
+            </div>
+
+            <div class="categories">
+
+                <a href="#" class="category">
+                    <div class="category-icon">📱</div>
+                    <h3>Electronics</h3>
+                </a>
+
+                <a href="#" class="category">
+                    <div class="category-icon">👕</div>
+                    <h3>Fashion</h3>
+                </a>
+
+                <a href="#" class="category">
+                    <div class="category-icon">🎮</div>
+                    <h3>Gaming</h3>
+                </a>
+
+                <a href="#" class="category">
+                    <div class="category-icon">💻</div>
+                    <h3>Computers</h3>
+                </a>
+
+                <a href="#" class="category">
+                    <div class="category-icon">🏠</div>
+                    <h3>Home</h3>
+                </a>
+
+                <a href="#" class="category">
+                    <div class="category-icon">🎧</div>
+                    <h3>Accessories</h3>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- FLASH SALE -->
+        <section class="flash-sale">
+
+            <div class="sale-header">
+
+                <h2>🔥 Flash Sale</h2>
+
+                <div class="timer">
+                    05 : 42 : 18
+                </div>
+
+            </div>
+
+
+            <div class="products">
+
+                <div class="product">
+
+                    <div class="product-image">
+                        🎧
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Wireless Headphone</h3>
+
+                        <div class="price">
+                            ৳1,499
+                            <span class="old-price">৳2,000</span>
+                        </div>
+
+                        <div class="rating">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+
+                        <button class="buy-btn">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="product">
+
+                    <div class="product-image">
+                        ⌚
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Smart Watch</h3>
+
+                        <div class="price">
+                            ৳1,999
+                            <span class="old-price">৳2,800</span>
+                        </div>
+
+                        <div class="rating">
+                            ⭐⭐⭐⭐☆
+                        </div>
+
+                        <button class="buy-btn">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="product">
+
+                    <div class="product-image">
+                        🎮
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Gaming Controller</h3>
+
+                        <div class="price">
+                            ৳1,299
+                            <span class="old-price">৳1,800</span>
+                        </div>
+
+                        <div class="rating">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+
+                        <button class="buy-btn">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="product">
+
+                    <div class="product-image">
+                        📱
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Mobile Phone</h3>
+
+                        <div class="price">
+                            ৳18,999
+                            <span class="old-price">৳22,000</span>
+                        </div>
+
+                        <div class="rating">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+
+                        <button class="buy-btn">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- POPULAR PRODUCTS -->
+        <section id="products">
+
+            <div class="section-title">
+                <h2>Popular Products</h2>
+                <a href="#">View All</a>
+            </div>
+
+
+            <div class="products">
+
+                <div class="product">
+
+                    <div class="product-image">
+                        👟
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Premium Sneakers</h3>
+
+                        <div class="price">
+                            ৳2,499
+                        </div>
+
+                        <div class="rating">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+
+                        <button class="buy-btn">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="product">
+
+                    <div class="product-image">
+                        🎒
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Travel Backpack</h3>
+
+                        <div class="price">
+                            ৳1,299
+                        </div>
+
+                        <div class="rating">
+                            ⭐⭐⭐⭐☆
+                        </div>
+
+                        <button class="buy-btn">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="product">
+
+                    <div class="product-image">
+                        🖱️
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Gaming Mouse</h3>
+
+                        <div class="price">
+                            ৳899
+                        </div>
+
+                        <div class="rating">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+
+                        <button class="buy-btn">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="product">
+
+                    <div class="product-image">
+                        ⌨️
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Mechanical Keyboard</h3>
+
+                        <div class="price">
+                            ৳2,199
+                        </div>
+
+                        <div class="rating">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+
+                        <button class="buy-btn">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROMO BANNER -->
+        <section class="banner">
+
+            <h2>Big Deals Are Coming! 🔥</h2>
+
+            <p>
+                Get amazing discounts on your favorite products.
+            </p>
+
+            <a href="#products" class="shop-btn">
+                Explore Deals
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-col">
+
+                <h3>NOKI</h3>
+
+                <p>
+                    Your trusted online shopping destination.
+                    Find quality products at great prices.
+                </p>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h3>Quick Links</h3>
+
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h3>Customer Service</h3>
+
+                <a href="#">Help Center</a>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+                <a href="#">Privacy Policy</a>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h3>Follow Us</h3>
+
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+                <a href="#">TikTok</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+            © 2026 NOKI. All Rights Reserved.
+        </div>
+
+    </footer>
+
+</body>
+</html>
