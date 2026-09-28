@@ -1291,6 +1291,83 @@
         }, 1000);
 
     </script>
+     <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
+  import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signOut,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+  // Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCILH16FWPPXm9MehQdvb9KcQt-Zar3mIg",
+    authDomain: "noki-740d3.firebaseapp.com",
+    projectId: "noki-740d3",
+    storageBucket: "noki-740d3.firebasestorage.app",
+    messagingSenderId: "206070792746",
+    appId: "1:206070792746:web:cc5aa6deee3f2a3fdb3953"
+  };
+
+  // Firebase Start
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  // Buttons / User Box
+  const loginBtn = document.getElementById("loginBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const userBox = document.getElementById("userBox");
+  const userPhoto = document.getElementById("userPhoto");
+  const userName = document.getElementById("userName");
+  const userEmail = document.getElementById("userEmail");
+
+  // Google Login
+  loginBtn.addEventListener("click", async () => {
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error(error);
+      alert("Google Login failed. Please try again.");
+    }
+  });
+
+  // Logout
+  logoutBtn.addEventListener("click", async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  // Check Login Status
+  onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+      loginBtn.style.display = "none";
+      userBox.style.display = "flex";
+
+      userName.textContent = user.displayName || "NOKI User";
+      userEmail.textContent = user.email || "";
+
+      if (user.photoURL) {
+        userPhoto.src = user.photoURL;
+      }
+
+    } else {
+      loginBtn.style.display = "block";
+      userBox.style.display = "none";
+
+      userName.textContent = "";
+      userEmail.textContent = "";
+      userPhoto.src = "";
+    }
+
+  });
+</script>
 </body>
 </html>
