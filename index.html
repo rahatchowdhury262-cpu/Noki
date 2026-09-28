@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Noki - Online Shop</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    /* Header */
+    header {
+      background: #111827;
+      color: white;
+      padding: 15px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .search {
+      flex: 1;
+      max-width: 500px;
+      display: flex;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 11px 15px;
+      border: none;
+      outline: none;
+      border-radius: 8px 0 0 8px;
+      font-size: 15px;
+    }
+
+    .search button {
+      padding: 0 18px;
+      border: none;
+      background: #ff6b35;
+      color: white;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+
+    .cart {
+      font-size: 18px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #ff6b35, #ff9f43);
+      color: white;
+      padding: 55px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      margin-bottom: 20px;
+    }
+
+    .shop-btn {
+      background: white;
+      color: #ff6b35;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Products */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 35px auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product h3 {
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #ff6b35;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .add-btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #111827;
+      color: white;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background: #ff6b35;
+    }
+
+    /* Footer */
+    footer {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 50px;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      header {
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .search {
+        order: 3;
+        flex-basis: 100%;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">🛍️ Noki</div>
+
+    <div class="search">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search products..."
+        onkeyup="searchProducts()"
+      >
+      <button>🔍</button>
+    </div>
+
+    <div class="cart" onclick="showCart()">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Welcome to Noki</h1>
+    <p>Shop your favorite products at the best prices.</p>
+    <button class="shop-btn" onclick="scrollToProducts()">
+      Shop Now
+    </button>
+  </section>
+
+  <!-- Products -->
+  <main class="container">
+
+    <h2 class="section-title">🔥 Popular Products</h2>
+
+    <div class="products" id="productList">
+
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80">
+        <div class="product-info">
+          <h3>Smart Watch</h3>
+          <div class="price">৳1,500</div>
+          <button class="add-btn" onclick="addToCart('Smart Watch', 1500)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80">
+        <div class="product-info">
+          <h3>Headphone</h3>
+          <div class="price">৳1,200</div>
+          <button class="add-btn" onclick="addToCart('Headphone', 1200)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80">
+        <div class="product-info">
+          <h3>Sports Shoes</h3>
+          <div class="price">৳2,500</div>
+          <button class="add-btn" onclick="addToCart('Sports Shoes', 2500)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80">
+        <div class="product-info">
+          <h3>Camera</h3>
+          <div class="price">৳5,000</div>
+          <button class="add-btn" onclick="addToCart('Camera', 5000)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Noki. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    let cartCount = 0;
+
+    function addToCart(product, price) {
+      cartCount++;
+
+      document.getElementById("cartCount").innerText = cartCount;
+
+      alert(product + " added to cart! 🛒");
+    }
+
+    function showCart() {
+      if (cartCount === 0) {
+        alert("Your cart is empty.");
+      } else {
+        alert("You have " + cartCount + " item(s) in your cart.");
+      }
+    }
+
+    function scrollToProducts() {
+      document.getElementById("productList").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function searchProducts() {
+      const input = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+      const products = document.querySelectorAll(".product");
+
+      products.forEach(function(product) {
+        const name = product
+          .querySelector("h3")
+          .innerText
+          .toLowerCase();
+
+        if (name.includes(input)) {
+          product.style.display = "block";
+        } else {
+          product.style.display = "none";
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
