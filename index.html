@@ -1,334 +1,1055 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Noki - Online Shop</title>
+<title>Noki | Online Shop</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
 
-    body {
-      background: #f5f5f5;
-      color: #222;
-    }
+body{
+  background:#f6f7fb;
+  color:#171717;
+  transition:.3s;
+}
 
-    /* Header */
-    header {
-      background: #111827;
-      color: white;
-      padding: 15px 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+body.dark{
+  background:#111827;
+  color:#fff;
+}
 
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-    }
+header{
+  background:#111827;
+  color:white;
+  padding:14px 5%;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
 
-    .search {
-      flex: 1;
-      max-width: 500px;
-      display: flex;
-    }
+.logo{
+  font-size:25px;
+  font-weight:bold;
+  white-space:nowrap;
+}
 
-    .search input {
-      width: 100%;
-      padding: 11px 15px;
-      border: none;
-      outline: none;
-      border-radius: 8px 0 0 8px;
-      font-size: 15px;
-    }
+.search{
+  flex:1;
+  display:flex;
+  max-width:550px;
+  margin:auto;
+}
 
-    .search button {
-      padding: 0 18px;
-      border: none;
-      background: #ff6b35;
-      color: white;
-      border-radius: 0 8px 8px 0;
-      cursor: pointer;
-    }
+.search input{
+  width:100%;
+  padding:12px 15px;
+  border:0;
+  outline:0;
+  border-radius:8px 0 0 8px;
+}
 
-    .cart {
-      font-size: 18px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
+.search button{
+  border:0;
+  padding:0 17px;
+  background:#ff6b35;
+  color:white;
+  border-radius:0 8px 8px 0;
+}
 
-    /* Hero */
-    .hero {
-      background: linear-gradient(135deg, #ff6b35, #ff9f43);
-      color: white;
-      padding: 55px 20px;
-      text-align: center;
-    }
+.header-btn{
+  cursor:pointer;
+  font-size:18px;
+  white-space:nowrap;
+}
 
-    .hero h1 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
+/* HERO */
 
-    .hero p {
-      font-size: 17px;
-      margin-bottom: 20px;
-    }
+.hero{
+  padding:65px 20px;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#ff6b35,#ff9f43);
+}
 
-    .shop-btn {
-      background: white;
-      color: #ff6b35;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.hero h1{
+  font-size:42px;
+  margin-bottom:12px;
+}
 
-    /* Products */
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 35px auto;
-    }
+.hero p{
+  font-size:18px;
+  margin-bottom:25px;
+}
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 28px;
-    }
+.shop-btn{
+  border:0;
+  background:white;
+  color:#ff6b35;
+  padding:13px 28px;
+  border-radius:30px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
+/* AD */
 
-    .product {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-      transition: 0.3s;
-    }
+.ad{
+  width:90%;
+  max-width:1150px;
+  margin:25px auto;
+  padding:25px;
+  border-radius:15px;
+  background:#111827;
+  color:white;
+  text-align:center;
+}
 
-    .product:hover {
-      transform: translateY(-5px);
-    }
+.ad h2{
+  color:#ffb347;
+  margin-bottom:8px;
+}
 
-    .product img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+.ad button{
+  margin-top:15px;
+  padding:10px 22px;
+  border:0;
+  border-radius:20px;
+  cursor:pointer;
+}
 
-    .product-info {
-      padding: 15px;
-    }
+/* CONTAINER */
 
-    .product h3 {
-      margin-bottom: 8px;
-    }
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:35px auto;
+}
 
-    .price {
-      color: #ff6b35;
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
+.title{
+  text-align:center;
+  margin-bottom:25px;
+  font-size:28px;
+}
 
-    .add-btn {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      background: #111827;
-      color: white;
-      border-radius: 7px;
-      cursor: pointer;
-    }
+/* CATEGORIES */
 
-    .add-btn:hover {
-      background: #ff6b35;
-    }
+.categories{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+}
 
-    /* Footer */
-    footer {
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 25px;
-      margin-top: 50px;
-    }
+.category{
+  border:0;
+  padding:10px 18px;
+  border-radius:25px;
+  cursor:pointer;
+  background:#e5e7eb;
+}
 
-    /* Mobile */
-    @media (max-width: 600px) {
-      header {
-        flex-wrap: wrap;
-      }
+.category.active,
+.category:hover{
+  background:#ff6b35;
+  color:white;
+}
 
-      .logo {
-        font-size: 22px;
-      }
+/* PRODUCTS */
 
-      .search {
-        order: 3;
-        flex-basis: 100%;
-      }
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:22px;
+}
 
-      .hero h1 {
-        font-size: 30px;
-      }
-    }
-  </style>
+.product{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 4px 15px #00000012;
+  position:relative;
+  transition:.3s;
+}
+
+.dark .product{
+  background:#1f2937;
+}
+
+.product:hover{
+  transform:translateY(-6px);
+}
+
+.product img{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+}
+
+.product-info{
+  padding:16px;
+}
+
+.product h3{
+  margin-bottom:8px;
+}
+
+.old-price{
+  text-decoration:line-through;
+  color:#888;
+  font-size:14px;
+}
+
+.price{
+  color:#ff6b35;
+  font-size:21px;
+  font-weight:bold;
+  margin:5px 0 12px;
+}
+
+.badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#ef4444;
+  color:white;
+  padding:6px 9px;
+  border-radius:7px;
+  font-size:12px;
+}
+
+.heart{
+  position:absolute;
+  right:10px;
+  top:10px;
+  background:white;
+  border:0;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.add{
+  width:100%;
+  padding:11px;
+  border:0;
+  background:#111827;
+  color:white;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.add:hover{
+  background:#ff6b35;
+}
+
+/* CART */
+
+.cart-panel{
+  position:fixed;
+  right:-420px;
+  top:0;
+  width:390px;
+  max-width:90%;
+  height:100%;
+  background:white;
+  color:#111;
+  z-index:2000;
+  padding:22px;
+  box-shadow:-5px 0 20px #0003;
+  transition:.3s;
+  overflow-y:auto;
+}
+
+.cart-panel.open{
+  right:0;
+}
+
+.cart-close{
+  float:right;
+  border:0;
+  background:#eee;
+  padding:7px 10px;
+  cursor:pointer;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 0;
+  border-bottom:1px solid #ddd;
+  gap:10px;
+}
+
+.qty button{
+  border:0;
+  background:#eee;
+  padding:5px 9px;
+  cursor:pointer;
+}
+
+.cart-total{
+  font-size:22px;
+  font-weight:bold;
+  margin:20px 0;
+}
+
+.checkout-btn{
+  width:100%;
+  padding:13px;
+  border:0;
+  background:#ff6b35;
+  color:white;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* CHECKOUT */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:3000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.checkout{
+  background:white;
+  color:#111;
+  width:500px;
+  max-width:100%;
+  padding:25px;
+  border-radius:15px;
+  max-height:90vh;
+  overflow:auto;
+}
+
+.checkout h2{
+  margin-bottom:20px;
+}
+
+.checkout input,
+.checkout textarea,
+.checkout select{
+  width:100%;
+  padding:12px;
+  margin:7px 0;
+  border:1px solid #ddd;
+  border-radius:7px;
+  outline:0;
+}
+
+.payment{
+  margin:12px 0;
+}
+
+.close-modal{
+  float:right;
+  border:0;
+  background:#eee;
+  padding:7px 10px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:30px;
+  margin-top:50px;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#111827;
+  color:white;
+  padding:13px 22px;
+  border-radius:25px;
+  display:none;
+  z-index:5000;
+}
+
+.toast.show{
+  display:block;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+  header{
+    flex-wrap:wrap;
+  }
+
+  .search{
+    order:3;
+    flex-basis:100%;
+  }
+
+  .hero h1{
+    font-size:32px;
+  }
+
+  .cart-panel{
+    width:100%;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="logo">🛍️ Noki</div>
+<header>
 
-    <div class="search">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search products..."
-        onkeyup="searchProducts()"
-      >
-      <button>🔍</button>
-    </div>
+  <div class="logo">🛍️ Noki</div>
 
-    <div class="cart" onclick="showCart()">
-      🛒 Cart (<span id="cartCount">0</span>)
-    </div>
-  </header>
+  <div class="search">
+    <input id="search" placeholder="Search products..." oninput="renderProducts()">
+    <button>🔍</button>
+  </div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1>Welcome to Noki</h1>
-    <p>Shop your favorite products at the best prices.</p>
-    <button class="shop-btn" onclick="scrollToProducts()">
-      Shop Now
+  <div class="header-btn" onclick="toggleDark()">🌙</div>
+
+  <div class="header-btn" onclick="openCart()">
+    🛒 <span id="cartCount">0</span>
+  </div>
+
+</header>
+
+
+<section class="hero">
+
+  <h1>Welcome to Noki</h1>
+
+  <p>Shop smart. Shop easy. Shop Noki.</p>
+
+  <button class="shop-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+    Shop Now
+  </button>
+
+</section>
+
+
+<!-- YOUR OWN AD -->
+
+<section class="ad">
+
+  <h2>🔥 Noki Special Offer</h2>
+
+  <p>Get amazing deals on selected products!</p>
+
+  <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+    Shop Offer
+  </button>
+
+</section>
+
+
+<main class="container">
+
+  <h2 class="title">🛍️ Our Products</h2>
+
+  <div class="categories">
+
+    <button class="category active" onclick="setCategory('All',this)">
+      All
     </button>
-  </section>
 
-  <!-- Products -->
-  <main class="container">
+    <button class="category" onclick="setCategory('Electronics',this)">
+      Electronics
+    </button>
 
-    <h2 class="section-title">🔥 Popular Products</h2>
+    <button class="category" onclick="setCategory('Fashion',this)">
+      Fashion
+    </button>
 
-    <div class="products" id="productList">
+    <button class="category" onclick="setCategory('Shoes',this)">
+      Shoes
+    </button>
 
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80">
-        <div class="product-info">
-          <h3>Smart Watch</h3>
-          <div class="price">৳1,500</div>
-          <button class="add-btn" onclick="addToCart('Smart Watch', 1500)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
+    <button class="category" onclick="setCategory('Accessories',this)">
+      Accessories
+    </button>
 
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80">
-        <div class="product-info">
-          <h3>Headphone</h3>
-          <div class="price">৳1,200</div>
-          <button class="add-btn" onclick="addToCart('Headphone', 1200)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
+  </div>
 
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80">
-        <div class="product-info">
-          <h3>Sports Shoes</h3>
-          <div class="price">৳2,500</div>
-          <button class="add-btn" onclick="addToCart('Sports Shoes', 2500)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
+  <div class="products" id="products"></div>
 
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80">
-        <div class="product-info">
-          <h3>Camera</h3>
-          <div class="price">৳5,000</div>
-          <button class="add-btn" onclick="addToCart('Camera', 5000)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
+</main>
+
+
+<!-- CART -->
+
+<div class="cart-panel" id="cartPanel">
+
+  <button class="cart-close" onclick="closeCart()">✕</button>
+
+  <h2>🛒 Your Cart</h2>
+
+  <div id="cartItems"></div>
+
+  <div class="cart-total">
+    Total: ৳<span id="cartTotal">0</span>
+  </div>
+
+  <button class="checkout-btn" onclick="openCheckout()">
+    Proceed to Checkout
+  </button>
+
+</div>
+
+
+<!-- CHECKOUT -->
+
+<div class="modal" id="checkoutModal">
+
+  <div class="checkout">
+
+    <button class="close-modal" onclick="closeCheckout()">✕</button>
+
+    <h2>📦 Checkout</h2>
+
+    <input id="customerName" placeholder="Your Name">
+
+    <input id="customerPhone" placeholder="Phone Number">
+
+    <textarea id="customerAddress" rows="4" placeholder="Delivery Address"></textarea>
+
+    <div class="payment">
+
+      <strong>Payment Method</strong>
+
+      <select id="paymentMethod">
+
+        <option value="cod">
+          Cash on Delivery
+        </option>
+
+        <option value="bkash">
+          bKash
+        </option>
+
+      </select>
 
     </div>
-  </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2026 Noki. All Rights Reserved.</p>
-  </footer>
+    <p>
+      Order Total:
+      <strong>৳<span id="checkoutTotal">0</span></strong>
+    </p>
 
-  <script>
-    let cartCount = 0;
+    <br>
 
-    function addToCart(product, price) {
-      cartCount++;
+    <button class="checkout-btn" onclick="placeOrder()">
+      Place Order
+    </button>
 
-      document.getElementById("cartCount").innerText = cartCount;
+  </div>
 
-      alert(product + " added to cart! 🛒");
-    }
+</div>
 
-    function showCart() {
-      if (cartCount === 0) {
-        alert("Your cart is empty.");
-      } else {
-        alert("You have " + cartCount + " item(s) in your cart.");
-      }
-    }
 
-    function scrollToProducts() {
-      document.getElementById("productList").scrollIntoView({
-        behavior: "smooth"
-      });
-    }
+<footer>
 
-    function searchProducts() {
-      const input = document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase();
+  <h3>🛍️ Noki</h3>
 
-      const products = document.querySelectorAll(".product");
+  <br>
 
-      products.forEach(function(product) {
-        const name = product
-          .querySelector("h3")
-          .innerText
-          .toLowerCase();
+  <p>Simple • Smart • Shopping</p>
 
-        if (name.includes(input)) {
-          product.style.display = "block";
-        } else {
-          product.style.display = "none";
-        }
-      });
-    }
-  </script>
+  <br>
+
+  <p>© 2026 Noki. All Rights Reserved.</p>
+
+</footer>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+const products = [
+
+  {
+    id:1,
+    name:"Smart Watch",
+    category:"Electronics",
+    price:1500,
+    oldPrice:1900,
+    image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"
+  },
+
+  {
+    id:2,
+    name:"Headphone",
+    category:"Electronics",
+    price:1200,
+    oldPrice:1600,
+    image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+  },
+
+  {
+    id:3,
+    name:"Sports Shoes",
+    category:"Shoes",
+    price:2500,
+    oldPrice:3200,
+    image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"
+  },
+
+  {
+    id:4,
+    name:"Camera",
+    category:"Electronics",
+    price:5000,
+    oldPrice:6000,
+    image:"https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80"
+  },
+
+  {
+    id:5,
+    name:"Classic T-Shirt",
+    category:"Fashion",
+    price:650,
+    oldPrice:900,
+    image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80"
+  },
+
+  {
+    id:6,
+    name:"Backpack",
+    category:"Accessories",
+    price:950,
+    oldPrice:1300,
+    image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"
+  }
+
+];
+
+
+let cart = JSON.parse(localStorage.getItem("nokiCart")) || [];
+
+let category = "All";
+
+
+function saveCart(){
+
+  localStorage.setItem(
+    "nokiCart",
+    JSON.stringify(cart)
+  );
+
+}
+
+
+function showToast(message){
+
+  const toast = document.getElementById("toast");
+
+  toast.innerText = message;
+
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },2000);
+
+}
+
+
+function renderProducts(){
+
+  const search =
+    document.getElementById("search").value.toLowerCase();
+
+  const box =
+    document.getElementById("products");
+
+  const filtered = products.filter(p => {
+
+    const matchCategory =
+      category === "All" || p.category === category;
+
+    const matchSearch =
+      p.name.toLowerCase().includes(search);
+
+    return matchCategory && matchSearch;
+
+  });
+
+
+  box.innerHTML = "";
+
+
+  filtered.forEach(p => {
+
+    const discount =
+      Math.round((1-p.price/p.oldPrice)*100);
+
+
+    box.innerHTML += `
+
+      <div class="product">
+
+        <span class="badge">
+          ${discount}% OFF
+        </span>
+
+        <button class="heart"
+          onclick="wishlist(${p.id})">
+          ❤️
+        </button>
+
+        <img src="${p.image}" alt="${p.name}">
+
+        <div class="product-info">
+
+          <small>${p.category}</small>
+
+          <h3>${p.name}</h3>
+
+          <span class="old-price">
+            ৳${p.oldPrice}
+          </span>
+
+          <div class="price">
+            ৳${p.price}
+          </div>
+
+          <button class="add"
+            onclick="addToCart(${p.id})">
+
+            🛒 Add to Cart
+
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+function setCategory(cat,button){
+
+  category = cat;
+
+  document
+    .querySelectorAll(".category")
+    .forEach(b => b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  renderProducts();
+
+}
+
+
+function addToCart(id){
+
+  const item = cart.find(x => x.id === id);
+
+  if(item){
+
+    item.qty++;
+
+  }else{
+
+    cart.push({
+      id:id,
+      qty:1
+    });
+
+  }
+
+  saveCart();
+
+  updateCart();
+
+  showToast("✅ Product added to cart!");
+
+}
+
+
+function updateCart(){
+
+  const items =
+    document.getElementById("cartItems");
+
+  items.innerHTML = "";
+
+  let total = 0;
+  let count = 0;
+
+
+  cart.forEach(item => {
+
+    const product =
+      products.find(p => p.id === item.id);
+
+    if(!product) return;
+
+    const subtotal =
+      product.price * item.qty;
+
+    total += subtotal;
+
+    count += item.qty;
+
+
+    items.innerHTML += `
+
+      <div class="cart-item">
+
+        <div>
+
+          <strong>${product.name}</strong>
+
+          <br>
+
+          ৳${product.price} × ${item.qty}
+
+        </div>
+
+        <div class="qty">
+
+          <button onclick="changeQty(${item.id},-1)">
+            −
+          </button>
+
+          ${item.qty}
+
+          <button onclick="changeQty(${item.id},1)">
+            +
+          </button>
+
+          <button onclick="removeItem(${item.id})">
+            🗑️
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+
+  if(cart.length === 0){
+
+    items.innerHTML =
+      "<p>Your cart is empty.</p>";
+
+  }
+
+
+  document.getElementById("cartCount").innerText = count;
+
+  document.getElementById("cartTotal").innerText = total;
+
+  document.getElementById("checkoutTotal").innerText = total;
+
+}
+
+
+function changeQty(id,value){
+
+  const item =
+    cart.find(x => x.id === id);
+
+  if(!item) return;
+
+  item.qty += value;
+
+  if(item.qty <= 0){
+
+    cart = cart.filter(x => x.id !== id);
+
+  }
+
+  saveCart();
+
+  updateCart();
+
+}
+
+
+function removeItem(id){
+
+  cart =
+    cart.filter(x => x.id !== id);
+
+  saveCart();
+
+  updateCart();
+
+  showToast("🗑️ Product removed");
+
+}
+
+
+function openCart(){
+
+  document
+    .getElementById("cartPanel")
+    .classList.add("open");
+
+}
+
+
+function closeCart(){
+
+  document
+    .getElementById("cartPanel")
+    .classList.remove("open");
+
+}
+
+
+function openCheckout(){
+
+  if(cart.length === 0){
+
+    showToast("🛒 Your cart is empty!");
+
+    return;
+
+  }
+
+  document
+    .getElementById("checkoutModal")
+    .classList.add("show");
+
+  updateCart();
+
+}
+
+
+function closeCheckout(){
+
+  document
+    .getElementById("checkoutModal")
+    .classList.remove("show");
+
+}
+
+
+function wishlist(id){
+
+  const product =
+    products.find(p => p.id === id);
+
+  showToast(
+    "❤️ " + product.name + " saved to wishlist!"
+  );
+
+}
+
+
+function toggleDark(){
+
+  document
+    .body
+    .classList
+    .toggle("dark");
+
+}
+
+
+function placeOrder(){
+
+  const name =
+    document.getElementById("customerName").value.trim();
+
+  const phone =
+    document.getElementById("customerPhone").value.trim();
+
+  const address =
+    document.getElementById("customerAddress").value.trim();
+
+  const payment =
+    document.getElementById("paymentMethod").value;
+
+
+  if(!name || !phone || !address){
+
+    alert("Please fill in all delivery information.");
+
+    return;
+
+  }
+
+
+  if(payment === "bkash"){
+
+    alert(
+      "bKash payment option selected.\n\n" +
+      "Real bKash payment gateway will be connected after official merchant/API setup."
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    "✅ Order placed successfully!\n\n" +
+    "Thank you, " + name + "!"
+  );
+
+
+  cart = [];
+
+  saveCart();
+
+  updateCart();
+
+  closeCheckout();
+
+  closeCart();
+
+}
+
+
+renderProducts();
+
+updateCart();
+
+</script>
 
 </body>
 </html>
